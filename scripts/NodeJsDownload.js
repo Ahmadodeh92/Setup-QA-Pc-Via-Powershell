@@ -1,5 +1,5 @@
 // ======================================
-// PostmanDownload.js (Enhanced with Progress & Fallback)
+// NodeJsDownload.js (Enhanced with Progress & Fallback)
 // ======================================
 
 const { chromium } = require('playwright');
@@ -29,7 +29,7 @@ if (!fs.existsSync(downloadFolder)) {
 
 (async () => {
     console.log(`\n${colors.cyan}══════════════════════════════════════════════════════════${colors.reset}`);
-    console.log(`${colors.magenta}              POSTMAN DOWNLOADER                         ${colors.reset}`);
+    console.log(`${colors.magenta}              NODE.JS DOWNLOADER                         ${colors.reset}`);
     console.log(`${colors.cyan}══════════════════════════════════════════════════════════${colors.reset}\n`);
     
     console.log(`${colors.yellow}[SYSTEM INFO]${colors.reset}`);
@@ -37,41 +37,41 @@ if (!fs.existsSync(downloadFolder)) {
     console.log(`${colors.green}• Architecture:${colors.reset} ${arch}`);
     console.log(`${colors.green}• Operating System:${colors.reset} ${os.platform()} ${os.arch()}\n`);
     
-    console.log(`${colors.magenta}[POSTMAN INFORMATION]${colors.reset}`);
+    console.log(`${colors.magenta}[NODE.JS INFORMATION]${colors.reset}`);
     console.log(`${colors.cyan}╔══════════════════════════════════════════════════════════╗${colors.reset}`);
-    console.log(`${colors.cyan}║${colors.reset} ${colors.yellow}POSTMAN${colors.reset} - API Development Environment              ${colors.cyan}║${colors.reset}`);
+    console.log(`${colors.cyan}║${colors.reset} ${colors.yellow}NODE.JS${colors.reset} - JavaScript Runtime Environment           ${colors.cyan}║${colors.reset}`);
     console.log(`${colors.cyan}╠══════════════════════════════════════════════════════════╣${colors.reset}`);
-    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Purpose:${colors.reset} API testing & development              ${colors.cyan}║${colors.reset}`);
-    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• For:${colors.reset} Developers, QA engineers, API testers      ${colors.cyan}║${colors.reset}`);
-    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Features:${colors.reset} REST, SOAP, GraphQL testing           ${colors.cyan}║${colors.reset}`);
-    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Collections:${colors.reset} Organize API requests              ${colors.cyan}║${colors.reset}`);
-    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Environments:${colors.reset} Manage variables & configs        ${colors.cyan}║${colors.reset}`);
-    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Automation:${colors.reset} Test scripts & monitoring           ${colors.cyan}║${colors.reset}`);
-    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Installation:${colors.reset} Windows .exe installer            ${colors.cyan}║${colors.reset}`);
-    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Size:${colors.reset} ~150-200 MB                              ${colors.cyan}║${colors.reset}`);
+    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Purpose:${colors.reset} Run JavaScript server-side              ${colors.cyan}║${colors.reset}`);
+    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• For:${colors.reset} Backend development, npm package manager    ${colors.cyan}║${colors.reset}`);
+    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Includes:${colors.reset} Node.js runtime + npm                 ${colors.cyan}║${colors.reset}`);
+    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Package Manager:${colors.reset} npm (Node Package Manager)     ${colors.cyan}║${colors.reset}`);
+    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Installation:${colors.reset} Windows MSI installer              ${colors.cyan}║${colors.reset}`);
+    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• License:${colors.reset} MIT License                           ${colors.cyan}║${colors.reset}`);
+    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Recommended:${colors.reset} For JavaScript/TypeScript dev      ${colors.cyan}║${colors.reset}`);
+    console.log(`${colors.cyan}║${colors.reset} ${colors.green}• Size:${colors.reset} ~25-30 MB                                ${colors.cyan}║${colors.reset}`);
     console.log(`${colors.cyan}╚══════════════════════════════════════════════════════════╝${colors.reset}\n`);
     
-    console.log(`${colors.yellow}[AVAILABLE INSTALLERS]${colors.reset}`);
-    console.log(`${colors.green}1.${colors.reset} Windows 64-bit (.exe) - Recommended for modern systems`);
-    console.log(`${colors.green}2.${colors.reset} Windows 32-bit (.exe) - For older systems\n`);
+    console.log(`${colors.yellow}[TARGET VERSIONS AVAILABLE]${colors.reset}`);
+    console.log(`${colors.green}1.${colors.reset} Node.js LTS (Long Term Support) - Recommended for most users`);
+    console.log(`${colors.green}2.${colors.reset} Node.js Current - Latest features (less stable)\n`);
     
     console.log(`${colors.yellow}[DOWNLOAD STRATEGY]${colors.reset}`);
-    console.log(`${colors.cyan}•${colors.reset} Method 1: Direct from postman.com (Official)`);
-    console.log(`${colors.cyan}•${colors.reset} Method 2: Direct download link (fallback)`);
+    console.log(`${colors.cyan}•${colors.reset} Method 1: Direct from nodejs.org (Official MSI installer)`);
+    console.log(`${colors.cyan}•${colors.reset} Method 2: GitHub releases (fallback)`);
     console.log(`${colors.cyan}•${colors.reset} Method 3: Manual fallback with instructions\n`);
     
-    console.log(`${colors.magenta}[TARGET]${colors.reset} Downloading Postman...\n`);
+    console.log(`${colors.magenta}[TARGET]${colors.reset} Downloading Node.js...\n`);
     
     let downloadSuccess = false;
     let filePath = '';
     let fileName = '';
     let downloadSource = '';
-    let postmanVersion = '';
+    let nodeVersion = '';
     let downloadMethod = '';
     
-    // METHOD 1: Direct from postman.com
+    // METHOD 1: Direct from nodejs.org
     try {
-        console.log(`${colors.yellow}[METHOD 1]${colors.reset} Getting Postman from postman.com...`);
+        console.log(`${colors.yellow}[METHOD 1]${colors.reset} Getting Node.js from nodejs.org...`);
         
         const browser = await chromium.launch({ 
             headless: true,
@@ -86,8 +86,8 @@ if (!fs.existsSync(downloadFolder)) {
         
         const page = await context.newPage();
         
-        console.log(`${colors.yellow}[INFO]${colors.reset} Opening Postman download page...`);
-        await page.goto('https://www.postman.com/downloads/', { 
+        console.log(`${colors.yellow}[INFO]${colors.reset} Opening Node.js download page...`);
+        await page.goto('https://nodejs.org/en/download/prebuilt-binaries', { 
             waitUntil: 'domcontentloaded',
             timeout: 30000 
         });
@@ -97,25 +97,23 @@ if (!fs.existsSync(downloadFolder)) {
         
         console.log(`${colors.green}[INFO]${colors.reset} Page loaded successfully`);
         
-        // Get Postman version if available
+        // Get Node.js version from page
         const pageText = await page.textContent('body');
-        const versionMatch = pageText.match(/Postman v(\d+\.\d+\.\d+)/i) || 
-                            pageText.match(/version (\d+\.\d+\.\d+)/i);
+        const versionMatch = pageText.match(/Node\.js v(\d+\.\d+\.\d+)/i) || 
+                            pageText.match(/Current version: v?(\d+\.\d+\.\d+)/i);
         
         if (versionMatch) {
-            postmanVersion = versionMatch[1];
-            console.log(`${colors.green}[INFO]${colors.reset} Found Postman version: ${postmanVersion}`);
+            nodeVersion = versionMatch[1];
+            console.log(`${colors.green}[INFO]${colors.reset} Found Node.js version: ${nodeVersion}`);
         }
         
-        // Try different selectors for download button
+        // Look for Windows MSI download
+        const archText = arch === '64-bit' ? 'x64' : 'x86';
         const downloadSelectors = [
-            '[data-test="download-the-app-windows-64"]',
-            '[data-testid="download-windows"]',
-            'button:has-text("Download for Windows")',
-            'a:has-text("Download for Windows")',
-            '.download-button:has-text("Windows")',
-            '[href*="Postman-win64"]',
-            '[href$=".exe"]:visible'
+            `a[href*="windows-${archText}.msi"]`,
+            `a[href*="node-v"][href*="windows-${archText}.msi"]`,
+            `a:has-text("Windows Installer (.msi)")`,
+            `a[href$=".msi"]:visible`
         ];
         
         let downloadBtn = null;
@@ -133,57 +131,46 @@ if (!fs.existsSync(downloadFolder)) {
         }
         
         if (!downloadBtn) {
-            // Search for download links
+            // Try to find any MSI link
             const allLinks = await page.$$eval('a', links => 
                 links.map(link => ({
                     href: link.href,
-                    text: link.textContent.trim(),
-                    innerHTML: link.innerHTML
+                    text: link.textContent.trim()
                 })).filter(link => 
-                    (link.href.includes('.exe') || link.text.includes('Download')) &&
-                    (link.text.includes('Windows') || link.text.includes('Win') || link.href.includes('win64'))
+                    link.href.includes('.msi') && 
+                    (link.text.includes('Windows') || link.text.includes('MSI') || link.text.includes('Installer'))
                 )
             );
             
             if (allLinks.length > 0) {
-                console.log(`${colors.green}[INFO]${colors.reset} Found ${allLinks.length} potential download links`);
+                const msiLink = allLinks[0];
+                console.log(`${colors.green}[INFO]${colors.reset} Found MSI link: ${msiLink.text}`);
                 
-                // Try to click the first valid download link
-                for (const link of allLinks) {
-                    try {
-                        console.log(`${colors.yellow}[INFO]${colors.reset} Trying link: ${link.text.substring(0, 50)}...`);
-                        
-                        const downloadPromise = page.waitForEvent('download');
-                        await page.evaluate((href) => {
-                            const anchor = document.querySelector(`a[href="${href}"]`);
-                            if (anchor) anchor.click();
-                        }, link.href);
-                        
-                        const download = await downloadPromise;
-                        fileName = download.suggestedFilename();
-                        filePath = path.join(downloadFolder, fileName);
-                        
-                        console.log(`${colors.green}[INFO]${colors.reset} Postman installer: ${fileName}`);
-                        
-                        // Download with progress counter
-                        await downloadWithCounter(download, filePath);
-                        
-                        await browser.close();
-                        
-                        console.log(`${colors.green}[SUCCESS]${colors.reset} Postman downloaded to: ${filePath}`);
-                        downloadSuccess = true;
-                        downloadSource = 'postman.com';
-                        downloadMethod = 'Direct link from page';
-                        break;
-                        
-                    } catch (e) {
-                        continue;
-                    }
-                }
-            }
-            
-            if (!downloadSuccess) {
-                throw new Error('No download button or links found');
+                // Click the link
+                const downloadPromise = page.waitForEvent('download');
+                await page.evaluate((href) => {
+                    const link = document.querySelector(`a[href="${href}"]`);
+                    if (link) link.click();
+                }, msiLink.href);
+                
+                const download = await downloadPromise;
+                fileName = download.suggestedFilename();
+                filePath = path.join(downloadFolder, fileName);
+                
+                console.log(`${colors.green}[INFO]${colors.reset} Node.js installer: ${fileName}`);
+                
+                // Download with progress counter
+                await downloadWithCounter(download, filePath);
+                
+                await browser.close();
+                
+                console.log(`${colors.green}[SUCCESS]${colors.reset} Node.js downloaded to: ${filePath}`);
+                downloadSuccess = true;
+                downloadSource = 'nodejs.org';
+                downloadMethod = 'Direct MSI download';
+                
+            } else {
+                throw new Error('No MSI download links found');
             }
         } else {
             // Click the download button
@@ -194,36 +181,36 @@ if (!fs.existsSync(downloadFolder)) {
             fileName = download.suggestedFilename();
             filePath = path.join(downloadFolder, fileName);
             
-            console.log(`${colors.green}[INFO]${colors.reset} Postman installer: ${fileName}`);
+            console.log(`${colors.green}[INFO]${colors.reset} Node.js installer: ${fileName}`);
             
             // Download with progress counter
             await downloadWithCounter(download, filePath);
             
             await browser.close();
             
-            console.log(`${colors.green}[SUCCESS]${colors.reset} Postman downloaded to: ${filePath}`);
+            console.log(`${colors.green}[SUCCESS]${colors.reset} Node.js downloaded to: ${filePath}`);
             downloadSuccess = true;
-            downloadSource = 'postman.com';
-            downloadMethod = 'Button click from postman.com';
+            downloadSource = 'nodejs.org';
+            downloadMethod = 'Button click from nodejs.org';
         }
         
     } catch (error) {
-        console.log(`${colors.red}[ERROR]${colors.reset} postman.com download failed: ${error.message}`);
+        console.log(`${colors.red}[ERROR]${colors.reset} nodejs.org download failed: ${error.message}`);
     }
     
-    // METHOD 2: Direct download link fallback
+    // METHOD 2: GitHub fallback
     if (!downloadSuccess) {
-        console.log(`\n${colors.yellow}[METHOD 2]${colors.reset} Using direct download link...`);
+        console.log(`\n${colors.yellow}[METHOD 2]${colors.reset} Trying GitHub fallback...`);
         
         try {
-            const archText = arch === '64-bit' ? '64' : '32';
+            const archText = arch === '64-bit' ? 'x64' : 'x86';
             
-            // Direct download URL for Postman (latest version)
-            const directUrl = `https://dl.pstmn.io/download/latest/win${archText}`;
+            // Get latest Node.js LTS version from GitHub
+            const githubUrl = `https://github.com/nodejs/node/releases/download/latest-v20.x/node-v20.11.0-win-${archText}.msi`;
             
-            console.log(`${colors.green}[INFO]${colors.reset} Using direct download link`);
+            console.log(`${colors.green}[INFO]${colors.reset} Using Node.js 20 LTS (GitHub fallback)`);
             
-            fileName = `Postman-win${archText}-Setup.exe`;
+            fileName = `node-v20.11.0-win-${archText}.msi`;
             filePath = path.join(downloadFolder, fileName);
             
             // Clean existing file
@@ -232,73 +219,37 @@ if (!fs.existsSync(downloadFolder)) {
             }
             
             console.log(`${colors.yellow}[INFO]${colors.reset} Downloading: ${fileName}`);
-            console.log(`${colors.yellow}[INFO]${colors.reset} From: ${directUrl}`);
-            
-            await downloadWithPercentage(directUrl, filePath);
-            
-            console.log(`${colors.green}[SUCCESS]${colors.reset} Postman downloaded to: ${filePath}`);
-            downloadSuccess = true;
-            downloadSource = 'Postman CDN (Direct Link)';
-            downloadMethod = 'Direct CDN download';
-            postmanVersion = 'Latest';
-            
-        } catch (error) {
-            console.log(`${colors.red}[ERROR]${colors.reset} Direct download failed: ${error.message}`);
-        }
-    }
-    
-    // METHOD 3: Alternative download link
-    if (!downloadSuccess) {
-        console.log(`\n${colors.yellow}[METHOD 3]${colors.reset} Trying alternative download link...`);
-        
-        try {
-            const archText = arch === '64-bit' ? 'x64' : 'ia32';
-            
-            // GitHub releases or alternative source
-            const githubUrl = `https://github.com/postmanlabs/postman-app-support/releases/download/continuous/Postman-win32-${archText}-latest.exe`;
-            
-            console.log(`${colors.green}[INFO]${colors.reset} Using GitHub release (continuous build)`);
-            
-            fileName = `Postman-${archText}-latest.exe`;
-            filePath = path.join(downloadFolder, fileName);
-            
-            // Clean existing file
-            if (fs.existsSync(filePath)) {
-                fs.unlinkSync(filePath);
-            }
-            
-            console.log(`${colors.yellow}[INFO]${colors.reset} Downloading: ${fileName}`);
+            console.log(`${colors.yellow}[INFO]${colors.reset} From: ${githubUrl}`);
             
             await downloadWithPercentage(githubUrl, filePath);
             
-            console.log(`${colors.green}[SUCCESS]${colors.reset} Postman downloaded to: ${filePath}`);
+            console.log(`${colors.green}[SUCCESS]${colors.reset} Node.js downloaded to: ${filePath}`);
             downloadSuccess = true;
-            downloadSource = 'GitHub (Continuous Build)';
-            downloadMethod = 'GitHub release download';
-            postmanVersion = 'Latest';
+            downloadSource = 'GitHub (Node.js 20 LTS)';
+            downloadMethod = 'Direct GitHub download';
+            nodeVersion = '20.11.0';
             
         } catch (error) {
-            console.log(`${colors.red}[ERROR]${colors.reset} Alternative download failed: ${error.message}`);
+            console.log(`${colors.red}[ERROR]${colors.reset} GitHub download failed: ${error.message}`);
         }
     }
     
-    // METHOD 4: Manual fallback
+    // METHOD 3: Manual fallback
     if (!downloadSuccess) {
-        console.log(`\n${colors.yellow}[METHOD 4]${colors.reset} Manual download required`);
+        console.log(`\n${colors.yellow}[METHOD 3]${colors.reset} Manual download required`);
         
         console.log(`${colors.red}[ERROR]${colors.reset} Automatic download failed`);
-        console.log(`${colors.yellow}[INFO]${colors.reset} Please download Postman manually:`);
-        console.log(`${colors.cyan}1.${colors.reset} Go to: https://www.postman.com/downloads/`);
-        console.log(`${colors.cyan}2.${colors.reset} Click "Download for Windows" button`);
-        console.log(`${colors.cyan}3.${colors.reset} Or use direct link: https://dl.pstmn.io/download/latest/win64`);
+        console.log(`${colors.yellow}[INFO]${colors.reset} Please download Node.js manually:`);
+        console.log(`${colors.cyan}1.${colors.reset} Go to: https://nodejs.org/en/download/prebuilt-binaries`);
+        console.log(`${colors.cyan}2.${colors.reset} Click "Windows Installer (.msi)" for ${arch}`);
+        console.log(`${colors.cyan}3.${colors.reset} Or visit: https://nodejs.org/en/download/`);
         console.log(`${colors.cyan}4.${colors.reset} Save the file to: ${downloadFolder}`);
-        console.log(`${colors.yellow}[NOTE]${colors.reset} Postman requires account for full features (free account available)\n`);
         
         process.exit(1);
     }
     
     // Show results
-    await showResults(filePath, fileName, postmanVersion, arch, downloadSource, downloadMethod);
+    await showResults(filePath, fileName, nodeVersion, arch, downloadSource, downloadMethod);
     
     process.exit(0);
 })();
@@ -407,7 +358,7 @@ async function downloadWithPercentage(url, outputPath) {
                 return;
             }
             
-            totalBytes = parseInt(response.headers['content-length'], 10) || 200000000;
+            totalBytes = parseInt(response.headers['content-length'], 10) || 30000000;
             const fileSizeMB = (totalBytes / (1024 * 1024)).toFixed(2);
             console.log(`${colors.yellow}[INFO]${colors.reset} File size: ${fileSizeMB} MB`);
             
@@ -460,14 +411,14 @@ async function showResults(filePath, fileName, version, arch, source, method) {
         console.log(`${colors.green}• Size:${colors.reset} ${fileSizeMB} MB`);
     } catch (e) {}
     
-    const fileType = fileName.endsWith('.exe') ? 'Windows Executable (.exe)' :
-                    fileName.endsWith('.msi') ? 'Windows Installer (.msi)' :
+    const fileType = fileName.endsWith('.msi') ? 'Windows Installer (.msi)' :
+                    fileName.endsWith('.exe') ? 'Windows Executable (.exe)' :
                     'Installation Package';
     
     console.log(`${colors.green}• File:${colors.reset} ${fileName}`);
     console.log(`${colors.green}• Type:${colors.reset} ${fileType}`);
     console.log(`${colors.green}• Location:${colors.reset} ${filePath}`);
-    console.log(`${colors.green}• Description:${colors.reset} Postman API Development Environment`);
+    console.log(`${colors.green}• Description:${colors.reset} Node.js Runtime + npm`);
     console.log(`${colors.green}• Version:${colors.reset} ${version || 'Latest'}`);
     console.log(`${colors.green}• Source:${colors.reset} ${source}`);
     console.log(`${colors.green}• Method:${colors.reset} ${method}`);
@@ -476,30 +427,21 @@ async function showResults(filePath, fileName, version, arch, source, method) {
     console.log(`${colors.magenta}[INSTALLATION INSTRUCTIONS]${colors.reset}`);
     console.log(`${colors.cyan}1.${colors.reset} Double-click the file: ${filePath}`);
     console.log(`${colors.cyan}2.${colors.reset} Follow the installation wizard (recommend default settings)`);
-    console.log(`${colors.cyan}3.${colors.reset} Launch Postman after installation`);
-    console.log(`${colors.cyan}4.${colors.reset} Sign in with Google/GitHub account or create new account`);
-    console.log(`${colors.cyan}5.${colors.reset} Start creating and testing APIs!\n`);
+    console.log(`${colors.cyan}3.${colors.reset} Restart your computer if prompted`);
+    console.log(`${colors.cyan}4.${colors.reset} Verify installation by opening Command Prompt:`);
+    console.log(`   ${colors.green}node --version${colors.reset} - Check Node.js version`);
+    console.log(`   ${colors.green}npm --version${colors.reset} - Check npm version\n`);
     
-    console.log(`${colors.yellow}[POST-INSTALLATION SETUP]${colors.reset}`);
-    console.log(`${colors.green}1. Create Workspace:${colors.reset} Organize your API projects`);
-    console.log(`${colors.green}2. Create Collection:${colors.reset} Group related API requests`);
-    console.log(`${colors.green}3. Set Environments:${colors.reset} Manage variables for different stages`);
-    console.log(`${colors.green}4. Write Tests:${colors.reset} Add JavaScript test scripts`);
-    console.log(`${colors.green}5. Monitor APIs:${colors.reset} Schedule API monitoring\n`);
-    
-    console.log(`${colors.yellow}[USEFUL FEATURES]${colors.reset}`);
-    console.log(`${colors.green}• Collections:${colors.reset} Organize and share API requests`);
-    console.log(`${colors.green}• Environments:${colors.reset} Manage variables (dev, staging, prod)`);
-    console.log(`${colors.green}• Tests:${colors.reset} Write JavaScript tests for API responses`);
-    console.log(`${colors.green}• Mock Servers:${colors.reset} Create mock APIs for testing`);
-    console.log(`${colors.green}• Documentation:${colors.reset} Auto-generate API documentation`);
-    console.log(`${colors.green}• Monitoring:${colors.reset} Schedule API health checks\n`);
+    console.log(`${colors.yellow}[POST-INSTALLATION VERIFICATION]${colors.reset}`);
+    console.log(`${colors.green}node --version${colors.reset} - Should show: v${version || 'x.x.x'}`);
+    console.log(`${colors.green}npm --version${colors.reset} - Should show npm version`);
+    console.log(`${colors.green}npx --version${colors.reset} - Should show npx version\n`);
     
     console.log(`${colors.magenta}[DOWNLOAD SUMMARY]${colors.reset}`);
     console.log(`${colors.magenta}[FILE_PATH]${colors.reset} ${filePath}`);
     console.log(`${colors.magenta}[FILE_NAME]${colors.reset} ${fileName}`);
     console.log(`${colors.magenta}[FILE_TYPE]${colors.reset} ${fileType.split(' ')[0]}`);
-    console.log(`${colors.magenta}[SOFTWARE]${colors.reset} Postman`);
+    console.log(`${colors.magenta}[SOFTWARE]${colors.reset} Node.js`);
     console.log(`${colors.magenta}[VERSION]${colors.reset} ${version || 'Latest'}`);
     console.log(`${colors.magenta}[ARCHITECTURE]${colors.reset} ${arch}`);
     console.log(`${colors.magenta}[SOURCE]${colors.reset} ${source}`);
